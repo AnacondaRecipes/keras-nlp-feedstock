@@ -1,0 +1,94 @@
+{% set name = "keras-nlp" %}
+{% set version = "0.14.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/keras-team/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 64a8511c4de955ca949a6fefad51e7bc4c3a7d21259a69ccdf46af1a83a5a522
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+  skip: True  # [py<39]
+requirements:
+  host:
+    - python >=3.9
+    - pip
+    - numpy
+    - setuptools
+    - wheel
+    - tensorflow
+
+  run:
+    - absl-py
+    - kagglehub
+    - packaging
+    - python >=3.9
+    - regex
+    - rich
+    - {{ pin_compatible('numpy') }}
+
+
+test:
+  imports:
+    - keras_nlp
+    - keras_nlp.api
+    - keras_nlp.api.layers
+    - keras_nlp.api.metrics
+    - keras_nlp.api.models
+    - keras_nlp.api.samplers
+    - keras_nlp.api.tokenizers
+    - keras_nlp.src
+    - keras_nlp.src.layers
+    - keras_nlp.src.layers.modeling
+    - keras_nlp.src.layers.preprocessing
+    - keras_nlp.src.metrics
+    - keras_nlp.src.models
+    - keras_nlp.src.models.albert
+    - keras_nlp.src.models.bart
+    - keras_nlp.src.models.bert
+    - keras_nlp.src.models.bloom
+    - keras_nlp.src.models.deberta_v3
+    - keras_nlp.src.models.distil_bert
+    - keras_nlp.src.models.electra
+    - keras_nlp.src.models.f_net
+    - keras_nlp.src.models.falcon
+    - keras_nlp.src.models.gemma
+    - keras_nlp.src.models.gpt2
+    - keras_nlp.src.models.gpt_neo_x
+    - keras_nlp.src.models.llama
+    - keras_nlp.src.models.llama3
+    - keras_nlp.src.models.mistral
+    - keras_nlp.src.models.opt
+    - keras_nlp.src.models.pali_gemma
+    - keras_nlp.src.models.phi3
+    - keras_nlp.src.models.roberta
+    - keras_nlp.src.models.t5
+    - keras_nlp.src.models.whisper
+    - keras_nlp.src.models.xlm_roberta
+    - keras_nlp.src.models.xlnet
+    - keras_nlp.src.samplers
+    - keras_nlp.src.tests
+    - keras_nlp.src.tokenizers
+    - keras_nlp.src.utils
+    - keras_nlp.src.utils.transformers
+  requires:
+    - pip
+    - pytest
+  commands:
+    - pip check
+about:
+  home: "https://github.com/keras-team/keras-nlp"
+  license: Apache 2.0
+  license_family: APACHE
+  license_file:
+  summary: "Industry-strength Natural Language Processing extensions for Keras."
+  doc_url:
+  dev_url:
+
+extra:
+  recipe-maintainers:
+    - Arishamays1
