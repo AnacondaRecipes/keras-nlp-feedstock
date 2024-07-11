@@ -15,18 +15,15 @@ build:
   skip: True  # [py<39]
 requirements:
   host:
-    - python >=3.9
+    - python
     - pip
     - numpy
-    - setuptools
-    - wheel
-    - tensorflow
 
   run:
     - absl-py
     - kagglehub
     - packaging
-    - python >=3.9
+    - python
     - regex
     - rich
     - {{ pin_compatible('numpy') }}
@@ -81,13 +78,15 @@ test:
   commands:
     - pip check
 about:
-  home: "https://github.com/keras-team/keras-nlp"
-  license: Apache 2.0
+  home: https://github.com/keras-team/keras-nlp
+  license: Apache-2.0
   license_family: APACHE
   license_file:
-  summary: "Industry-strength Natural Language Processing extensions for Keras."
-  doc_url:
-  dev_url:
+  description: |
+    Industry-strength Natural Language Processing extensions for Keras.
+  summary: Industry-strength Natural Language Processing extensions for Keras.
+  doc_url: https://github.com/keras-team/keras-nlp/blob/master/README.md
+  dev_url: https://github.com/keras-team/keras-nlp
 
 extra:
   recipe-maintainers:
