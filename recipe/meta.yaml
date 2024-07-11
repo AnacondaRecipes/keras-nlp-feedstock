@@ -12,13 +12,14 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
-  skip: True  # [py<39]
+  skip: True  # [py<39 or py12]
 requirements:
   host:
     - python
     - pip
     - numpy
     - wheel
+    - pytorch
 
   run:
     - absl-py
@@ -28,16 +29,17 @@ requirements:
     - regex
     - rich
     - {{ pin_compatible('numpy') }}
-
+    # - keras
+    - tensorflow
 
 test:
   imports:
     - keras_nlp
-  source_files:
-    - keras_nlp/tests
+  # source_files:
+    # - keras_nlp/src/tests
   requires:
     - pip
-    - pytest
+
   commands:
     - pip check
 about:
