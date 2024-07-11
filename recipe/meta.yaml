@@ -1,0 +1,58 @@
+{% set name = "keras-nlp" %}
+{% set version = "0.14.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/keras-team/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 64a8511c4de955ca949a6fefad51e7bc4c3a7d21259a69ccdf46af1a83a5a522
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+  skip: True  # [py<39 or py12]
+requirements:
+  host:
+    - python
+    - pip
+    - numpy
+    - wheel
+    - pytorch
+
+  run:
+    - absl-py
+    - kagglehub
+    - packaging
+    - python
+    - regex
+    - rich
+    - {{ pin_compatible('numpy') }}
+    # - keras
+    - tensorflow
+
+test:
+  imports:
+    - keras_nlp
+  # source_files:
+    # - keras_nlp/src/tests
+  requires:
+    - pip
+
+  commands:
+    - pip check
+about:
+  home: https://github.com/keras-team/keras-nlp
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE
+  description: |
+    Industry-strength Natural Language Processing extensions for Keras.
+  summary: Industry-strength Natural Language Processing extensions for Keras.
+  doc_url: https://github.com/keras-team/keras-nlp/blob/master/README.md
+  dev_url: https://github.com/keras-team/keras-nlp
+
+extra:
+  recipe-maintainers:
+    - Arishamays1
